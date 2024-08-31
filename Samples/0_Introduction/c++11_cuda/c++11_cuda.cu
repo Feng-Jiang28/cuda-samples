@@ -122,12 +122,12 @@ int main(int argc, char **argv) {
   checkCudaErrors(cudaMemset(d_count, 0, sizeof(int)));
 
   // Try uncommenting one kernel call at a time
-  xyzw_frequency<<<8, 256>>>(d_count, d_text, len);
+  //xyzw_frequency<<<8, 256>>>(d_count, d_text, len);
   xyzw_frequency_thrust_device<<<1, 1>>>(d_count, d_text, len);
   checkCudaErrors(
       cudaMemcpy(&count, d_count, sizeof(int), cudaMemcpyDeviceToHost));
 
-  // xyzw_frequency_thrust_host(&count, h_text, len);
+  //xyzw_frequency_thrust_host(&count, h_text, len);
 
   std::cout << "counted " << count
             << " instances of 'x', 'y', 'z', or 'w' in \"" << filename << "\""
